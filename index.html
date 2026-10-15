@@ -47,10 +47,20 @@ function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 function start(){clearInterval(timer);stages.forEach(s=>s.qs=shuffle(s.qs));si=0;qi=0;score=0;stageScore=0;correct=0;locked=false;$("ending").classList.add("hide");$("game").classList.remove("hide");load()}
 function load(){clearInterval(timer);locked=false;selected=[];seconds=30;let s=stages[si],q=s.qs[qi];$("stageNum").textContent=si+1;$("score").textContent=score;$("round").textContent=qi+1;$("time").textContent=seconds;$("bar").style.width=(qi/s.qs.length*100)+"%";$("stageTag").textContent=s.tag;$("title").textContent=s.title;$("stagePoints").textContent=`스테이지 점수 ${stageScore} / 100`;$("prompt").textContent=s.type==="find"?q[0]:s.type==="build"?`목표 음절: 「${q[0]}」`:`목표 단어: 「${q[0]}」`;$("instruction").textContent=s.desc;$("feedback").textContent="";$("next").classList.add("hide");$("choices").innerHTML="";$("buildArea").classList.add("hide");
 if(s.type==="find"){shuffle(q[1]).forEach(x=>{let b=document.createElement("button");b.textContent=x;b.onclick=()=>answer(x===q[2],"정답은 "+q[2]+"!");$("choices").appendChild(b)})}
-else { $("buildArea").classList.remove("hide");$("tiles").innerHTML="";$("wordbox").textContent="선택한 자모: ";shuffle(q[1]).forEach((x,i)=>{let b=document.createElement("button");b.className="tile";b.textContent=x;b.onclick=()=>{if(!locked){selected.push(x);b.disabled=true;renderSelected()}};$("tiles").appendChild(b)});$("submitBuild").onclick=()=>{let target=s.type==="build"?q[2]:q[2];let got=selected.join("");let ok=got===target;if(s.type==="word"){ // word mode asks to tap the exact jamo sequence
- ok=got===q[2].join("");
- }
- answer(ok,`정답: ${s.type==="build"?q[2].join(" + "):q[2].join(" + ")}`)};$("undo").onclick=()=>{if(!locked&&selected.length){selected.pop();Array.from($("tiles").children).forEach(b=>b.disabled=false);renderSelected()}}}
+else { $("buildArea").classList.remove("hide");$("tiles").innerHTML="";$("wordbox").textContent="선택한 자모: ";shuffle(q[1]).forEach((x,i)=>{let b=document.createElement("button");b.className="tile";b.textContent=x;b.onclick=()=>{if(!locked){selected.push(x);b.disabled=true;renderSelected()}};$("tiles").appendChild(b)});$("submitBuild").onclick=()=>{
+const target=q[2].join("");
+const got=selected.join("");
+const ok=got===target;
+
+answer(
+
+    ok,
+
+    `정답: ${q[2].join(" + ")}`
+
+);
+
+};;$("undo").onclick=()=>{if(!locked&&selected.length){selected.pop();Array.from($("tiles").children).forEach(b=>b.disabled=false);renderSelected()}}}
 timer=setInterval(()=>{if(locked)return;seconds--;$("time").textContent=seconds;if(seconds<=0)answer(false,"시간 초과! 다음 미션으로 이동하세요.");},1000)}
 function renderSelected(){$("wordbox").textContent=selected.length?"선택한 자모: "+selected.join(" + "):"아직 선택한 자모가 없어요"}
 function answer(ok,msg){if(locked)return;locked=true;clearInterval(timer);$("choices").querySelectorAll("button").forEach(b=>b.disabled=true);$("tiles").querySelectorAll("button").forEach(b=>b.disabled=true);if(ok){score+=10;stageScore+=10;correct++;$("feedback").textContent="✨ 정답! +10점";}else{$("feedback").textContent="💡 "+msg;} $("score").textContent=score;$("stagePoints").textContent=`스테이지 점수 ${stageScore} / 100`;$("next").textContent=qi===9?(si===2?"결과 보기 →":"다음 스테이지 →"):"다음 미션 →";$("next").classList.remove("hide")}
