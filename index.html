@@ -1,4 +1,6 @@
-<!doctype html>
+from pathlib import Path
+
+html = r'''<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -15,7 +17,7 @@ h1{font-size:clamp(23px,5vw,34px);margin:0 0 5px}.sub{margin:0;font-size:14px}.s
 h2{margin:7px 0 8px;font-size:22px}.prompt{font-size:18px;font-weight:750;line-height:1.5}.hint{font-size:14px;opacity:.8}
 .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
 button{font:inherit;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--paper);padding:12px;font-weight:750;box-shadow:0 3px 0 var(--line);color:var(--ink);min-height:48px}
-button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}button:disabled{opacity:.55;cursor:default}
+button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}button:disabled{opacity:.7;cursor:default}
 .choices button{font-size:23px;background:var(--blue)}.choices button:nth-child(2n){background:var(--pink)}.choices button:nth-child(3n){background:var(--green)}
 .feedback{min-height:30px;margin-top:13px;font-weight:750}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.row button{flex:1}.primary{background:var(--yellow)}.secondary{background:white}
 .tiles{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tile{font-size:24px;min-width:48px;background:var(--pink);padding:8px 12px;border:2px solid var(--line);border-radius:9px;text-align:center}
@@ -23,7 +25,7 @@ button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}button:di
 .small{font-size:12px;opacity:.75}.hide{display:none!important}.result{font-size:20px;font-weight:800}.footer{text-align:center;font-size:12px;margin:20px 0;opacity:.7}
 .mix-card{border:2px solid var(--line);border-radius:12px;padding:12px;background:#f8f5ff;text-align:center;margin:12px 0}
 .mix-source{font-size:34px;font-weight:900;margin:4px}.mix-hint{font-size:14px;margin-top:5px}
-@media(max-width:420px){.wrap{padding:10px}.panel{padding:12px}.choices{gap:8px}.choices button{font-size:20px}}
+@media(max-width:420px){.wrap{padding:10px}.panel{padding:12px}.choices{grid-template-columns:1fr;gap:8px}.choices button{font-size:20px}}
 </style>
 </head>
 <body><main class="wrap">
@@ -70,7 +72,7 @@ const stages=[
   ["가",["ㄱ","ㅏ","ㄴ","ㅗ"],["ㄱ","ㅏ"]],["너",["ㄴ","ㅓ","ㄱ","ㅣ"],["ㄴ","ㅓ"]],["모",["ㅁ","ㅗ","ㄷ","ㅏ"],["ㅁ","ㅗ"]],["수",["ㅅ","ㅜ","ㄴ","ㅓ"],["ㅅ","ㅜ"]],["비",["ㅂ","ㅣ","ㄱ","ㅏ"],["ㅂ","ㅣ"]],["하",["ㅎ","ㅏ","ㄹ","ㅗ"],["ㅎ","ㅏ"]],["문",["ㅁ","ㅜ","ㄴ","ㅏ"],["ㅁ","ㅜ","ㄴ"]],["간",["ㄱ","ㅏ","ㄴ","ㅗ"],["ㄱ","ㅏ","ㄴ"]],["밥",["ㅂ","ㅏ","ㅂ","ㅜ"],["ㅂ","ㅏ","ㅂ"]],["산",["ㅅ","ㅏ","ㄴ","ㅣ"],["ㅅ","ㅏ","ㄴ"]]]},
  {tag:"STAGE 3 · WORD",title:"한글 미로 — WORD",desc:"흩어진 자모로 목표 단어를 완성하세요. 정답 +10점!",type:"word",qs:[
   ["나무",["ㄴ","ㅏ","ㅁ","ㅜ","ㄱ","ㅗ"],["ㄴ","ㅏ","ㅁ","ㅜ"]],["바다",["ㅂ","ㅏ","ㄷ","ㅏ","ㅁ","ㅜ"],["ㅂ","ㅏ","ㄷ","ㅏ"]],["우유",["ㅇ","ㅜ","ㅇ","ㅠ","ㄱ","ㅏ"],["ㅇ","ㅜ","ㅇ","ㅠ"]],["하늘",["ㅎ","ㅏ","ㄴ","ㅡ","ㄹ","ㅗ"],["ㅎ","ㅏ","ㄴ","ㅡ","ㄹ"]],["고기",["ㄱ","ㅗ","ㄱ","ㅣ","ㅂ","ㅏ"],["ㄱ","ㅗ","ㄱ","ㅣ"]],["나라",["ㄴ","ㅏ","ㄹ","ㅏ","ㅁ","ㅗ"],["ㄴ","ㅏ","ㄹ","ㅏ"]],["나비",["ㄴ","ㅏ","ㅂ","ㅣ","ㄱ","ㅗ"],["ㄴ","ㅏ","ㅂ","ㅣ"]],["모자",["ㅁ","ㅗ","ㅈ","ㅏ","ㄴ","ㅜ"],["ㅁ","ㅗ","ㅈ","ㅏ"]],["바지",["ㅂ","ㅏ","ㅈ","ㅣ","ㄷ","ㅗ"],["ㅂ","ㅏ","ㅈ","ㅣ"]],["가수",["ㄱ","ㅏ","ㅅ","ㅜ","ㄴ","ㅓ"],["ㄱ","ㅏ","ㅅ","ㅜ"]]]},
- {tag:"STAGE 4 · SPLIT",title:"자모 탐정 — SPLIT",desc:"제시된 단어를 자모로 나눠 보세요. 보기 중 정확하게 나눈 답을 고르면 +10점!",type:"split",qs:[
+ {tag:"STAGE 4 · SPLIT",title:"자모 탐정 — SPLIT",desc:"제시된 단어를 먼저 자모로 직접 분해해 보세요. 그다음 보기 3개 중 정확한 답을 선택하세요. 각 미션 정답 +10점!",type:"split",qs:[
   {word:"대학",meaning:"대학교육을 하는 고등 교육 기관",options:[["ㄷ","ㅐ","ㅎ","ㅏ","ㄱ"],["ㄷ","ㅐ","하","ㄱ"],["ㄷ","ㅐ","ㅗ","ㅇ","ㅏ","ㄱ"]],answer:0},
   {word:"학교",meaning:"학생이 교육을 받는 기관",options:[["ㅎ","ㅏ","ㄱ","ㄱ","ㅛ"],["하","ㄱ","교"],["ㅎ","ㅏ","ㄱ","ㄱ","ㅗ"]],answer:0},
   {word:"친구",meaning:"가깝게 지내는 사람",options:[["ㅊ","ㅣ","ㄴ","ㄱ","ㅜ"],["치","ㄴ","구"],["ㅊ","ㅣ","ㄴ","ㄱ","ㅠ"]],answer:0},
@@ -100,9 +102,9 @@ function load(){
   shuffle(q[1]).forEach(x=>{let b=document.createElement("button");b.textContent=x;b.onclick=()=>answer(x===q[2],"정답은 "+q[2]+"!");$("choices").appendChild(b)});
  }else if(s.type==="split"){
   $("choices").classList.remove("hide");
-  shuffle(q.options.map((opt,index)=>({opt,index}))).forEach(item=>{
+  shuffle(q.options.map((opt,index)=>({opt,index}))).forEach((item,displayIndex)=>{
    let b=document.createElement("button");
-   b.textContent=item.opt.join(", ");
+   b.textContent=["① ","② ","③ "][displayIndex]+item.opt.join(", ");
    b.style.fontSize="18px";
    b.onclick=()=>answer(item.index===q.answer,`「${q.word}」의 자모는 ${q.options[q.answer].join(", ")}입니다.`);
    $("choices").appendChild(b);
@@ -135,4 +137,8 @@ $("next").onclick=()=>{
 };
 function finish(){clearInterval(timer);$("game").classList.add("hide");$("ending").classList.remove("hide");$("endText").textContent=`총점 ${score}점 · 정답 ${correct}개! ${score>=280?"완벽해요! 한글 월드를 구했어요!":"수고했어요! 다시 도전해서 더 높은 점수에 도전해 보세요."}`}
 $("restart").onclick=start;$("playAgain").onclick=start;start();
-</script></body></html>
+</script></body></html>'''
+
+path = Path("/mnt/data/index.html")
+path.write_text(html, encoding="utf-8")
+print(f"파일 생성 완료: {path}")
