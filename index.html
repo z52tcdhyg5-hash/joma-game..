@@ -59,7 +59,7 @@ button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}button:di
 <div class="result">🏆 한글 월드 탐험 완료!</div><p id="endText"></p>
 <button id="playAgain" class="primary">다시 플레이</button>
 </section>
-<p class="footer">자모를 찾고 · 조합하고 · 단어를 완성하고 · 새로운 단어를 만들어 보세요!</p>
+<p class="footer">자모를 찾고 · 조합하고 · 단어를 완성하고 · 자모를 분해해 보세요!</p>
 </main>
 <script>
 const $=id=>document.getElementById(id);
@@ -70,17 +70,17 @@ const stages=[
   ["가",["ㄱ","ㅏ","ㄴ","ㅗ"],["ㄱ","ㅏ"]],["너",["ㄴ","ㅓ","ㄱ","ㅣ"],["ㄴ","ㅓ"]],["모",["ㅁ","ㅗ","ㄷ","ㅏ"],["ㅁ","ㅗ"]],["수",["ㅅ","ㅜ","ㄴ","ㅓ"],["ㅅ","ㅜ"]],["비",["ㅂ","ㅣ","ㄱ","ㅏ"],["ㅂ","ㅣ"]],["하",["ㅎ","ㅏ","ㄹ","ㅗ"],["ㅎ","ㅏ"]],["문",["ㅁ","ㅜ","ㄴ","ㅏ"],["ㅁ","ㅜ","ㄴ"]],["간",["ㄱ","ㅏ","ㄴ","ㅗ"],["ㄱ","ㅏ","ㄴ"]],["밥",["ㅂ","ㅏ","ㅂ","ㅜ"],["ㅂ","ㅏ","ㅂ"]],["산",["ㅅ","ㅏ","ㄴ","ㅣ"],["ㅅ","ㅏ","ㄴ"]]]},
  {tag:"STAGE 3 · WORD",title:"한글 미로 — WORD",desc:"흩어진 자모로 목표 단어를 완성하세요. 정답 +10점!",type:"word",qs:[
   ["나무",["ㄴ","ㅏ","ㅁ","ㅜ","ㄱ","ㅗ"],["ㄴ","ㅏ","ㅁ","ㅜ"]],["바다",["ㅂ","ㅏ","ㄷ","ㅏ","ㅁ","ㅜ"],["ㅂ","ㅏ","ㄷ","ㅏ"]],["우유",["ㅇ","ㅜ","ㅇ","ㅠ","ㄱ","ㅏ"],["ㅇ","ㅜ","ㅇ","ㅠ"]],["하늘",["ㅎ","ㅏ","ㄴ","ㅡ","ㄹ","ㅗ"],["ㅎ","ㅏ","ㄴ","ㅡ","ㄹ"]],["고기",["ㄱ","ㅗ","ㄱ","ㅣ","ㅂ","ㅏ"],["ㄱ","ㅗ","ㄱ","ㅣ"]],["나라",["ㄴ","ㅏ","ㄹ","ㅏ","ㅁ","ㅗ"],["ㄴ","ㅏ","ㄹ","ㅏ"]],["나비",["ㄴ","ㅏ","ㅂ","ㅣ","ㄱ","ㅗ"],["ㄴ","ㅏ","ㅂ","ㅣ"]],["모자",["ㅁ","ㅗ","ㅈ","ㅏ","ㄴ","ㅜ"],["ㅁ","ㅗ","ㅈ","ㅏ"]],["바지",["ㅂ","ㅏ","ㅈ","ㅣ","ㄷ","ㅗ"],["ㅂ","ㅏ","ㅈ","ㅣ"]],["가수",["ㄱ","ㅏ","ㅅ","ㅜ","ㄴ","ㅓ"],["ㄱ","ㅏ","ㅅ","ㅜ"]]]},
- {tag:"STAGE 4 · WORD MIX",title:"한글 바이러스 — WORD MIX",desc:"단어를 자모로 나눈 뒤, 자모를 다시 조합해 새로운 단어를 만드세요!",type:"mix",qs:[
-  {source:"수박",target:"박수",parts:["ㅅ","ㅜ","ㅂ","ㅏ","ㄱ"],hint:"손뼉을 치는 것을 뜻하는 말이에요."},
-  {source:"수국",target:"국수",parts:["ㅅ","ㅜ","ㄱ","ㅜ","ㄱ"],hint:"면으로 만든 음식이에요."},
-  {source:"고수",target:"수고",parts:["ㄱ","ㅗ","ㅅ","ㅜ"],hint:"어떤 일을 하느라 힘을 쓰는 것을 뜻해요."},
-  {source:"가수",target:"수가",parts:["ㄱ","ㅏ","ㅅ","ㅜ"],hint:"수량이나 숫자의 개수를 뜻하는 말이에요."},
-  {source:"문학",target:"학문",parts:["ㅁ","ㅜ","ㄴ","ㅎ","ㅏ","ㄱ"],hint:"배우고 익히는 지식이나 학술을 뜻해요."},
-  {source:"한강",target:"강한",parts:["ㅎ","ㅏ","ㄴ","ㄱ","ㅏ","ㅇ"],hint:"힘이 세거나 정도가 높다는 뜻이에요."},
-  {source:"부자",target:"자부",parts:["ㅂ","ㅜ","ㅈ","ㅏ"],hint:"자기 능력이나 가치를 믿는 것을 뜻해요."},
-  {source:"장수",target:"수장",parts:["ㅈ","ㅏ","ㅇ","ㅅ","ㅜ"],hint:"어떤 집단이나 조직의 우두머리를 뜻해요."},
-  {source:"신발",target:"발신",parts:["ㅅ","ㅣ","ㄴ","ㅂ","ㅏ","ㄹ"],hint:"편지나 메시지를 보내는 것을 뜻해요."},
-  {source:"대학",target:"학대",parts:["ㄷ","ㅐ","ㅎ","ㅏ","ㄱ"],hint:"남을 가혹하게 대하거나 괴롭히는 것을 뜻해요."}
+ {tag:"STAGE 4 · SPLIT",title:"자모 탐정 — SPLIT",desc:"제시된 단어를 자모로 나눠 보세요. 보기 중 정확하게 나눈 답을 고르면 +10점!",type:"split",qs:[
+  {word:"대학",meaning:"대학교육을 하는 고등 교육 기관",options:[["ㄷ","ㅐ","ㅎ","ㅏ","ㄱ"],["ㄷ","ㅐ","하","ㄱ"],["ㄷ","ㅐ","ㅗ","ㅇ","ㅏ","ㄱ"]],answer:0},
+  {word:"학교",meaning:"학생이 교육을 받는 기관",options:[["ㅎ","ㅏ","ㄱ","ㄱ","ㅛ"],["하","ㄱ","교"],["ㅎ","ㅏ","ㄱ","ㄱ","ㅗ"]],answer:0},
+  {word:"친구",meaning:"가깝게 지내는 사람",options:[["ㅊ","ㅣ","ㄴ","ㄱ","ㅜ"],["치","ㄴ","구"],["ㅊ","ㅣ","ㄴ","ㄱ","ㅠ"]],answer:0},
+  {word:"한국",meaning:"대한민국 또는 한민족을 가리키는 말",options:[["ㅎ","ㅏ","ㄴ","ㄱ","ㅜ","ㄱ"],["한","ㄱ","국"],["ㅎ","ㅏ","ㄴ","ㄱ","ㅗ","ㄱ"]],answer:0},
+  {word:"사람",meaning:"생각하고 말하며 사회를 이루어 사는 존재",options:[["ㅅ","ㅏ","ㄹ","ㅏ","ㅁ"],["사","ㄹ","ㅏ","ㅁ"],["ㅅ","ㅏ","ㄹ","ㅓ","ㅁ"]],answer:0},
+  {word:"바다",meaning:"육지로 둘러싸인 넓은 물",options:[["ㅂ","ㅏ","ㄷ","ㅏ"],["바","ㄷ","ㅏ"],["ㅂ","ㅓ","ㄷ","ㅏ"]],answer:0},
+  {word:"나무",meaning:"줄기와 가지가 있는 여러해살이 식물",options:[["ㄴ","ㅏ","ㅁ","ㅜ"],["나","ㅁ","ㅜ"],["ㄴ","ㅏ","ㅁ","ㅠ"]],answer:0},
+  {word:"문학",meaning:"언어를 통해 사상과 감정을 표현하는 예술",options:[["ㅁ","ㅜ","ㄴ","ㅎ","ㅏ","ㄱ"],["무","ㄴ","학"],["ㅁ","ㅜ","ㄴ","ㅎ","ㅗ","ㄱ"]],answer:0},
+  {word:"수박",meaning:"속이 붉고 수분이 많은 큰 과일",options:[["ㅅ","ㅜ","ㅂ","ㅏ","ㄱ"],["수","ㅂ","ㅏ","ㄱ"],["ㅅ","ㅜ","ㅂ","ㅓ","ㄱ"]],answer:0},
+  {word:"의자",meaning:"사람이 앉는 데 쓰는 가구",options:[["ㅇ","ㅢ","ㅈ","ㅏ"],["으","ㅣ","자"],["ㅇ","ㅣ","ㅈ","ㅓ"]],answer:0}
  ]}
 ];
 let si=0,qi=0,score=0,stageScore=0,correct=0,selected=[],timer=null,seconds=30,locked=false;
@@ -93,32 +93,29 @@ function load(){
  $("stageNum").textContent=si+1;$("score").textContent=score;$("round").textContent=qi+1;$("time").textContent=seconds;
  $("bar").style.width=(qi/s.qs.length*100)+"%";$("stageTag").textContent=s.tag;$("title").textContent=s.title;
  $("stagePoints").textContent=`스테이지 점수 ${stageScore} / 100`;
- $("prompt").textContent=s.type==="find"?q[0]:s.type==="build"?`목표 음절: 「${q[0]}」`:s.type==="word"?`목표 단어: 「${q[0]}」`:`새로운 단어를 만들어 보세요!`;
- $("instruction").textContent=s.desc;$("feedback").textContent="";$("next").classList.add("hide");$("choices").innerHTML="";$("buildArea").classList.add("hide");$("mixArea").classList.add("hide");
+ $("prompt").textContent=s.type==="find"?q[0]:s.type==="build"?`목표 음절: 「${q[0]}」`:s.type==="word"?`목표 단어: 「${q[0]}」`: `단어 「${q.word}」를 자모로 나눈 것은 무엇일까요?`;
+ $("instruction").textContent=s.type==="split"?`뜻: ${q.meaning} · 보기 중 하나를 선택하세요.`:s.desc;
+ $("feedback").textContent="";$("next").classList.add("hide");$("choices").innerHTML="";$("buildArea").classList.add("hide");$("mixArea").classList.add("hide");
  if(s.type==="find"){
   shuffle(q[1]).forEach(x=>{let b=document.createElement("button");b.textContent=x;b.onclick=()=>answer(x===q[2],"정답은 "+q[2]+"!");$("choices").appendChild(b)});
+ }else if(s.type==="split"){
+  $("choices").classList.remove("hide");
+  shuffle(q.options.map((opt,index)=>({opt,index}))).forEach(item=>{
+   let b=document.createElement("button");
+   b.textContent=item.opt.join(", ");
+   b.style.fontSize="18px";
+   b.onclick=()=>answer(item.index===q.answer,`「${q.word}」의 자모는 ${q.options[q.answer].join(", ")}입니다.`);
+   $("choices").appendChild(b);
+  });
  }else{
-  $("buildArea").classList.remove("hide");$("tiles").innerHTML="";$("wordbox").textContent="아직 선택한 자모가 없어요";$("tileHint").textContent=s.type==="mix"?"아래 자모를 순서대로 눌러 새로운 단어를 만드세요.":"아래 자모를 순서대로 눌러 정답을 만드세요.";
-  let targetParts=s.type==="mix"?q.parts:q[2];
-  let tilePool=s.type==="mix"?shuffle([...q.parts]):shuffle([...q[1]]);
-  if(s.type==="mix"){
-   $("mixArea").classList.remove("hide");
-   $("mixArea").innerHTML=`<div class="mix-card"><div class="hint">① 제시된 단어</div><div class="mix-source">${q.source}</div><button id="splitBtn" class="secondary">자모로 나누기</button><div id="splitResult" class="tiles"></div><div class="mix-hint">② ${q.hint}</div><div class="hint">③ 아래 자모를 다시 조합해 보세요.</div></div>`;
-   $("splitBtn").onclick=()=>{const box=$("splitResult");box.innerHTML="";q.parts.forEach(x=>{let t=document.createElement("span");t.className="tile";t.textContent=x;box.appendChild(t)});$("feedback").textContent="자모를 확인했어요. 순서대로 조합해 보세요!"};
-  }
+  $("buildArea").classList.remove("hide");$("tiles").innerHTML="";$("wordbox").textContent="아직 선택한 자모가 없어요";$("tileHint").textContent="아래 자모를 순서대로 눌러 정답을 만드세요.";
+  let targetParts=q[2];
+  let tilePool=shuffle([...q[1]]);
   tilePool.forEach((x,i)=>{let b=document.createElement("button");b.className="tile";b.textContent=x;b.dataset.index=i;b.onclick=()=>{if(!locked){selected.push({value:x,index:i});b.disabled=true;renderSelected()}};$("tiles").appendChild(b)});
-  $("submitBuild").onclick=()=>{const got=selected.map(x=>x.value).join("");const target=s.type==="mix"?q.target.split("").map(ch=>ch).join(""):targetParts.join("");if(s.type==="mix"){answer(got===mixTargetJamo(q.target),"정답 단어: "+q.target+"!")}else answer(got===target,"정답 자모: "+targetParts.join(" + ")+"!")};
+  $("submitBuild").onclick=()=>{const got=selected.map(x=>x.value).join("");const target=targetParts.join("");answer(got===target,"정답 자모: "+targetParts.join(" + ")+"!")};
   $("undo").onclick=()=>{if(!locked&&selected.length){const last=selected.pop();const b=[...$("tiles").children].find(el=>Number(el.dataset.index)===last.index);if(b)b.disabled=false;renderSelected()}};
  }
  timer=setInterval(()=>{if(locked)return;seconds--;$("time").textContent=seconds;if(seconds<=0)answer(false,"시간 초과! 다음 미션으로 이동하세요.");},1000);
-}
-function mixTargetJamo(word){
- const initial=["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
- const medial=["ㅏ","ㅐ","ㅑ","ㅒ","ㅓ","ㅔ","ㅕ","ㅖ","ㅗ","ㅘ","ㅙ","ㅚ","ㅛ","ㅜ","ㅝ","ㅞ","ㅟ","ㅠ","ㅡ","ㅢ","ㅣ"];
- const final=["","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
- let out=[];
- for(const ch of word){const code=ch.charCodeAt(0)-44032;if(code<0||code>11171){out.push(ch);continue}const l=Math.floor(code/588),v=Math.floor((code%588)/28),t=code%28;out.push(initial[l],medial[v]);if(t)out.push(final[t])}
- return out.join("");
 }
 function renderSelected(){$("wordbox").textContent=selected.length?"선택한 자모: "+selected.map(x=>x.value).join(" + "):"아직 선택한 자모가 없어요"}
 function answer(ok,msg){
